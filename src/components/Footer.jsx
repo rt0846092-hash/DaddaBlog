@@ -23,7 +23,7 @@ export default function Footer({ goHome, showCategory }) {
       <div className="container footer-inner">
         {/* Brand */}
         <div className="footer-brand">
-          <span className="logo">✦ Dadda</span>
+          <span className="logo">Dadda Blog</span>
           <p>Stories that inspire, inform, and ignite curiosity. Written for thinkers, dreamers, and doers.</p>
         </div>
 

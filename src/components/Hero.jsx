@@ -8,7 +8,7 @@ export default function Hero({ onExplore }) {
       <div className="hero-blob b3" />
 
       <div className="hero-content">
-        <span className="hero-badge">✦ Creative Writing &amp; Ideas</span>
+        <span className="hero-badge">Creative Writing &amp; Ideas</span>
 
         <h1 className="hero-title">
           Stories that<br />

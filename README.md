@@ -1,4 +1,4 @@
-# ✦ Dadda Blog
+# Dadda Blog
 
 A modern, responsive blog built with React and Vite. Readers can browse articles on technology, travel, and lifestyle, search and filter them, and read each post on its own shareable page.
 

@@ -36,7 +36,7 @@ export default function Navbar({ page, goHome, darkMode, toggleDark }) {
       <div className="nav-container">
         {/* Logo */}
         <button className="logo" onClick={() => scrollTo("Home")}>
-          <span className="logo-dot">✦</span> Dadda Blog
+          <img src="/dadda-icon.svg" alt="" className="logo-mark" width="32" height="32" /> Dadda Blog
         </button>
 
         {/* Desktop Links */}

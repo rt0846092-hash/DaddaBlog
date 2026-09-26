@@ -1604,3 +1604,13 @@ input:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* Logo mark (replaces the old sparkle) */
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+img.ac-logo { background: none; }

@@ -44,7 +44,7 @@ export default function About() {
         <div className="about-visual">
           <div className="about-card">
             <div className="ac-top">
-              <span className="ac-logo">✦</span>
+              <img src="/dadda-icon.svg" alt="" className="ac-logo" width="44" height="44" />
               <span className="ac-name">Dadda Blog</span>
             </div>
             <div className="ac-quote">
