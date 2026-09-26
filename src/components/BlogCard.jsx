@@ -26,7 +26,11 @@ export default function BlogCard({ post, onRead }) {
         <h3 className="card-title">{post.title}</h3>
         <p className="card-desc">{post.description}</p>
 
-        <button className="card-btn" onClick={() => onRead(post)}>
+        <button
+          className="card-btn"
+          onClick={() => onRead(post)}
+          aria-label={`Read more: ${post.title}`}
+        >
           Read More <span className="btn-arrow">→</span>
         </button>
       </div>

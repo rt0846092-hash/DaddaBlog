@@ -2,6 +2,7 @@
 export const posts = [
   {
     id: 1,
+    slug: "future-of-ai",
     title: "The Future of AI: What Lies Beyond ChatGPT",
     category: "Tech",
     date: "April 2, 2025",
@@ -29,6 +30,7 @@ The next decade will be defined not just by what AI *can* do, but by how wisely 
   },
   {
     id: 2,
+    slug: "backpacking-southeast-asia",
     title: "Backpacking Southeast Asia on a Budget",
     category: "Travel",
     date: "March 25, 2025",
@@ -66,6 +68,7 @@ Southeast Asia rewards slow travel. The less you rush, the more it gives.`,
   },
   {
     id: 3,
+    slug: "morning-routines",
     title: "Morning Routines of the World's Most Productive People",
     category: "Lifestyle",
     date: "March 18, 2025",
@@ -103,6 +106,7 @@ Your morning is a blank page every single day. Make it count.`,
   },
   {
     id: 4,
+    slug: "web-development-tools-2025",
     title: "Web Development in 2025: Tools You Need to Know",
     category: "Tech",
     date: "March 10, 2025",
@@ -138,6 +142,7 @@ If you're growing your skills in 2025: TypeScript (non-negotiable), React or Vue
   },
   {
     id: 5,
+    slug: "solo-travel-guide",
     title: "How to Travel Solo as a Woman: Safety & Freedom",
     category: "Travel",
     date: "February 28, 2025",
@@ -175,6 +180,7 @@ Wake up when you want. Eat what you crave. Change your plans on a whim. Stay an 
   },
   {
     id: 6,
+    slug: "minimalism",
     title: "Minimalism: How Owning Less Changed My Life",
     category: "Lifestyle",
     date: "February 15, 2025",
@@ -214,3 +220,5 @@ You might be surprised how little you actually need to feel full.`,
 
 // Extract unique categories
 export const categories = ["All", ...new Set(posts.map((p) => p.category))];
+
+export const getPostBySlug = (slug) => posts.find((p) => p.slug === slug) ?? null;

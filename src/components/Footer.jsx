@@ -1,12 +1,22 @@
-/* ── Footer ──────────────────────────────────────────────────────────── */
-export default function Footer({setActiveCategory, handleHome}) {
-  const socials = [
-     { icon: <i class="fa-brands fa-x-twitter"></i>, href: "https://twitter.com", label: "Twitter" },
-  { icon: <i class="fa-brands fa-linkedin"></i>, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: <i className="fa-brands fa-instagram"></i>, href: "https://instagram.com", label: "Instagram" },
-  { icon: <i className="fa-brands fa-github"></i>, href: "https://github.com", label: "GitHub" },
+import { categories } from "../data/posts";
+
+const EMAIL = "rt0846092@gmail.com";
+
+const socials = [
+  { icon: <i className="fa-brands fa-github" />, href: "https://github.com/rt0846092-hash", label: "GitHub" },
+  { icon: <i className="fa-brands fa-linkedin" />, href: "https://www.linkedin.com/in/roshan-tamang-663015283", label: "LinkedIn" },
+  { icon: <i className="fa-solid fa-envelope" />, href: `mailto:${EMAIL}`, label: "Email" },
 ];
 
+const quickLinks = [
+  { label: "Home", id: "home" },
+  { label: "Blog", id: "blog" },
+  { label: "About", id: "about" },
+  { label: "Contact", id: "contact" },
+];
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+export default function Footer({ goHome, showCategory }) {
   return (
     <footer className="footer" id="contact">
       <div className="footer-glow" />
@@ -19,96 +29,43 @@ export default function Footer({setActiveCategory, handleHome}) {
 
         {/* Links */}
         <div className="footer-links">
-  <h4>Quick Links</h4>
-  <button onClick={() => {
-    handleHome();
-    setTimeout(() => {
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}>Home</button>
-  <button onClick={() => {
-    handleHome();
-    setTimeout(() => {
-      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}>About</button>
-  <button onClick={() => {
-    handleHome();
-    setTimeout(() => {
-      document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}>Blog</button>
-  <button onClick={() => {
-    handleHome();
-    setTimeout(() => {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}>Contact</button>
-</div>       
+          <h4>Quick Links</h4>
+          {quickLinks.map((l) => (
+            <button key={l.id} onClick={() => goHome(l.id)}>{l.label}</button>
+          ))}
+        </div>
 
-        {/* Categories */}
+        {/* Categories — built from the posts, so they always match */}
         <div className="footer-links">
           <h4>Categories</h4>
-             <button
-                onClick={() => {
-                  handleHome(); // 🔥 go back to home
-                  setActiveCategory("Technology");
-
-              setTimeout(() => {
-                  document.getElementById("blog")?.scrollIntoView({
-                  behavior: "smooth",
-               });
-               }, 100);
-               }}
-                >
-               Technology
-            </button>
-             <button onClick={() => {
-                 handleHome();
-                 setActiveCategory("Travel");
-                setTimeout(() => {
-                   document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" });
-                    }, 100);
-                   }}>
-                  Travel
-            </button>    
-         <button onClick={() => {
-              handleHome();
-              setActiveCategory("Lifestyle");
-              setTimeout(() => {
-                document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }}>
-              Lifestyle
-            </button>
-
-          <button onClick={() => {
-              handleHome();
-              setActiveCategory("Design");
-              setTimeout(() => {
-                document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }}>
-              Design
-            </button>
+          {categories.filter((c) => c !== "All").map((cat) => (
+            <button key={cat} onClick={() => showCategory(cat)}>{cat}</button>
+          ))}
         </div>
 
         {/* Social */}
         <div className="footer-social-col">
-          <h4>Follow Us</h4>
+          <h4>Get in Touch</h4>
           <div className="social-icons">
             {socials.map((s) => (
-              <a key={s.label} href={s.href} className="social-icon" aria-label={s.label}>
+              <a
+                key={s.label}
+                href={s.href}
+                className="social-icon"
+                aria-label={s.label}
+                title={s.label}
+                {...(s.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+              >
                 {s.icon}
               </a>
             ))}
           </div>
-          <p className="footer-email">hello@dadda.blog</p>
+          <a className="footer-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Dadda Blog. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Dadda Blog by Roshan Tamang.</p>
         <p>Made with ❤️ &amp; React</p>
       </div>
     </footer>

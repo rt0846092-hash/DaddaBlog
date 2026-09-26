@@ -1479,3 +1479,128 @@ html.dark .navbar .nav-link {
     font-weight: 600;
   }
 }
+/* ════════════════════════════════════════════════════════
+   Post page additions — progress bar, headings, sharing,
+   related posts
+════════════════════════════════════════════════════════ */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--grad-primary);
+  z-index: 1001;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* Section headings inside a post */
+.detail-body .content-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 36px 0 12px;
+}
+
+/* Bold and italic words inside a paragraph stay inline */
+.detail-body .content-para strong {
+  font-family: inherit;
+  font-size: inherit;
+  display: inline;
+  margin: 0;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--text);
+}
+
+/* Category chip on the post page (clickable) */
+.detail-meta .detail-cat {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 50px;
+  background: var(--grad-primary);
+  color: var(--white);
+  font: 600 .75rem 'DM Sans', sans-serif;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.detail-meta .detail-cat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 48px;
+}
+.detail-actions .back-bottom-btn {
+  position: static;
+  width: auto;
+  margin-top: 0;
+  padding: 12px 26px;
+}
+.share-btn {
+  padding: 12px 22px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font: 500 .9rem 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.share-btn:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.related-section {
+  padding: 24px 0 80px;
+  border-top: 1px solid var(--border);
+}
+.related-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--text);
+  text-align: center;
+  margin: 40px 0 32px;
+}
+
+a.footer-email {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a.footer-email:hover { color: var(--white); }
+
+/* Visible focus for keyboard users */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--blue-light);
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .detail-actions { flex-direction: column; align-items: stretch; }
+  .detail-actions .back-bottom-btn,
+  .share-btn { width: 100%; text-align: center; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

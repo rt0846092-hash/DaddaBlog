@@ -1,54 +1,46 @@
 import { useState, useEffect } from "react";
 
 /* ── Navbar ─────────────────────────────────────────────────────────── */
-export default function Navbar({page,handleHome, darkMode, toggleDark }) {
+export default function Navbar({ page, goHome, darkMode, toggleDark }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", onScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navLinks = ["Home", "About", "Blog", "Contact"];
 
- const scrollTo = (id) => {
-  setMenuOpen(false);
-  
-  if (id === "Home") {
-    if (page === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      handleHome();
-    }
-    return;
-  }
-  
-  if (page === "detail") {
-    handleHome();
-    setTimeout(() => {
-      document.getElementById(id.toLowerCase())?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 100);
-    return;
-  }
+  const scrollTo = (link) => {
+    setMenuOpen(false);
 
-  const el = document.getElementById(id.toLowerCase());
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-};
+    if (link === "Home") {
+      if (page === "home") window.scrollTo({ top: 0, behavior: "smooth" });
+      else goHome();
+      return;
+    }
+
+    const id = link.toLowerCase();
+    if (page === "home") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      goHome(id);
+    }
+  };
 
   return (
     <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         {/* Logo */}
-        <button className="logo" onClick={handleHome}>
+        <button className="logo" onClick={() => scrollTo("Home")}>
           <span className="logo-dot">✦</span> Dadda Blog
         </button>
 
         {/* Desktop Links */}
-        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`} id="main-nav">
           {navLinks.map((link) => (
             <button key={link} className="nav-link" onClick={() => scrollTo(link)}>
               {link}
@@ -61,7 +53,8 @@ export default function Navbar({page,handleHome, darkMode, toggleDark }) {
           <button
             className="dark-toggle"
             onClick={toggleDark}
-            title="Toggle dark mode"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
             {darkMode ? "☀️" : "🌙"}
           </button>
@@ -69,6 +62,8 @@ export default function Navbar({page,handleHome, darkMode, toggleDark }) {
             className={`hamburger ${menuOpen ? "active" : ""}`}
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="main-nav"
           >
             <span /><span /><span />
           </button>

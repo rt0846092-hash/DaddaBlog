@@ -40,7 +40,7 @@ export default function Hero({ onExplore }) {
         <span className="pill p1">💻 Tech</span>
         <span className="pill p2">✈️ Travel</span>
         <span className="pill p3">🌿 Lifestyle</span>
-        <span className="pill p4">✦ Design</span>
+        <span className="pill p4">✍️ Stories</span>
       </div>
     </section>
   );

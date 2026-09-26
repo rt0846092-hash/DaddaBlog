@@ -1,18 +1,23 @@
+import { posts, categories } from "../data/posts";
+
+/* Stats are calculated from the real posts, so they stay accurate as posts are added */
+const totalMinutes = posts.reduce((sum, p) => sum + (parseInt(p.readTime, 10) || 0), 0);
+
+const stats = [
+  { value: posts.length, label: "Articles" },
+  { value: categories.length - 1, label: "Categories" },
+  { value: `${totalMinutes} min`, label: "Of Reading" },
+  { value: "2025", label: "Est." },
+];
+
 /* ── About ───────────────────────────────────────────────────────────── */
 export default function About() {
-  const stats = [
-    { value: "120+", label: "Articles" },
-    { value: "40K", label: "Readers" },
-    { value: "3", label: "Categories" },
-    { value: "2025", label: "Est." },
-  ];
-
   return (
     <section className="about-section" id="about">
       <div className="container about-inner">
         {/* Text */}
         <div className="about-text">
-          <span className="section-tag">About Inkwell</span>
+          <span className="section-tag">About Dadda Blog</span>
           <h2>
             A blog built for <span className="gradient-text">curious minds.</span>
           </h2>
@@ -22,8 +27,8 @@ export default function About() {
             respects your intelligence and your time.
           </p>
           <p>
-            No ads. No clickbait. Just thoughtful, well-researched stories from writers
-            who care deeply about their craft.
+            No ads. No clickbait. Just thoughtful, well-researched stories written with
+            care, and a reading experience that stays out of the way.
           </p>
           <div className="about-stats">
             {stats.map((s) => (
